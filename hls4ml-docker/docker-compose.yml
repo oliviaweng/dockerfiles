@@ -1,0 +1,10 @@
+version: '3.3'
+services:
+    hls4ml:
+        # environment:
+            # - 'DISPLAY=`hostname`:0'
+        container_name: hls4ml
+        volumes:
+            - '$PWD:/app/dev-hls4ml'
+            - /home/oweng/.ssh:/home/appuser/.ssh:ro
+        image: hls4ml
