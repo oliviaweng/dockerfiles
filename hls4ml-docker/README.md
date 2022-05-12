@@ -1,4 +1,4 @@
-# Docker environment for hls5ml + Vivado HLS 2020.1
+# Docker environment for hls4ml + Vivado HLS 2020.1
 
 ## Setup
 
