@@ -1,0 +1,17 @@
+name: hls4ml-testing
+channels:
+  - conda-forge
+dependencies:
+  - python=3.7
+  - jupyterhub
+  - pydot
+  - graphviz
+  - pytest
+  - pytest-cov
+  - pip
+  - pip:
+    - pytest-randomly
+    - jupyter
+    - tensorflow==2.4.1
+    - git+https://github.com/google/qkeras.git@a447723#egg=qkeras
+    - torch
