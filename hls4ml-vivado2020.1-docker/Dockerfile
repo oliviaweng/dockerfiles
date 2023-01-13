@@ -92,7 +92,7 @@ RUN \
 WORKDIR /app
 # Creates a non-root user with an explicit UID and adds permission to access the /app folder
 # For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
-RUN adduser -u 1043 --disabled-password --gecos "" appuser && chown -R appuser /app/
+RUN adduser -u 1000 --disabled-password --gecos "" appuser && chown -R appuser /app/
 USER appuser
 
 # create and activate virtual environment as appuser
@@ -111,5 +111,7 @@ RUN python3 -m pip install -r /app/requirements.txt
 ENV PYTHONUNBUFFERED=1
 
 ENV PATH="/tools/Xilinx/Vivado/2020.1/bin:$PATH"
+# ENV PATH="/home/appuser/tools/Xilinx/Vivado/2020.1/bin:$PATH"
 
 CMD ["/bin/bash", "-c", "source /tools/Xilinx/Vivado/2020.1/settings64.sh; cd /app; sleep infinity"]
+# CMD ["/bin/bash", "-c", "source /home/appuser/tools/Xilinx/Vivado/2020.1/appuser-settings64.sh; cd /app; sleep infinity"]

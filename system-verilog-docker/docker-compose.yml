@@ -1,10 +1,10 @@
 version: '3.3'
 services:
-    hls4ml:
+    verilog:
         # environment:
             # - 'DISPLAY=`hostname`:0'
-        container_name: hls4ml
+        container_name: verilog
         volumes:
-            - '$PWD:/app/dev-hls4ml'
+            - '$PWD:/app/dev-verilog'
             - /home/olivia/.ssh:/home/appuser/.ssh:ro
-        image: hls4ml
+        image: verilog
