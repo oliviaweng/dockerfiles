@@ -17,14 +17,28 @@ RUN \
     echo "%sudo ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 RUN \
+  dpkg --add-architecture i386 && \
+  apt-get update && \
+  apt-get -y --no-install-recommends install \
+    build-essential git gcc-multilib libc6-dev:i386 ocl-icd-opencl-dev libjpeg62-dev && \
+  apt-get -y -f install && \
+  apt-get autoclean && \
+  apt-get autoremove && \
+  rm -rf /var/lib/apt/lists/*
+
+RUN \
     apt-get update && \
     apt-get -y --no-install-recommends install \
-        git vim tmux htop 
+        vim tmux htop make g++
 
 RUN \
     tar -zxf /verilog-setup/${VERILOG_ENV} -C /verilog-setup && \
     rm -rf /verilog-setup/${VERILOG_ENV}
 
+RUN \
+    mkdir -p touch /etc/udev/rules.d/ && \
+    touch /etc/udev/rules.d/50-lattice-ftdi.rules && \
+    echo "ACTION==\"add\", ATTR{idVendor}==\"0403\", ATTR{idProduct}==\"6010\", MODE:=\"666\"" > /etc/udev/rules.d/50-lattice-ftdi.rules
 
 WORKDIR /app
 
